@@ -1,0 +1,208 @@
+       title: const Text('Grocery List'),
+        backgroundColor: Colors.grey.shade300, // background color of the profile appbar
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () {
+              // navigates to the settings page on button press
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AddButton()),
+              );
+            },
+          ),
+        ],
+
+
+
+        return SafeArea(
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(16),
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+
+                  // Header Bar
+                  Container(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            "Chef It Up",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30,
+                              color: Colors.brown.shade200,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 50,
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.search),
+                          color: Colors.grey.shade800,
+                          onPressed: () {},
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.notifications_none),
+                          color: Colors.grey.shade800,
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(
+                    height: 32,
+                  ),
+
+                  // Featured Recipe
+                  Container(
+                    height: size.height * 0.3,
+                    child: ListView.separated(
+                      itemCount: 1, // Change this to the actual length of your images list
+                      separatorBuilder: (BuildContext context, int index) =>
+                          const Divider(),
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        // Replace the following with your actual logic and data
+                        return AspectRatio(
+                          aspectRatio: 0.9 / 1,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Expanded(
+                                child: Container(
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(30),
+                                    child: Image.asset(
+                                      featuredImage[index],
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16),
+                                child:
+                                  Text(
+                                    "${featuredName[index]} Recipes",
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13,
+                                    )
+                                  )
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+
+                  const SizedBox(
+                    height: 32,
+                  ),
+
+                  // Bottom Recipe Carousel
+                  Container(
+                    height: size.height * 0.4,
+                    child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) { 
+                        return GestureDetector(
+                          onTap: () { 
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context) => AccessoryPage(images[4 - index])
+                              )
+                            );
+                          },
+                          child: AspectRatio(
+                            aspectRatio: 0.75 / 1,
+
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Expanded(child: Hero(
+                                    tag: images[3 - index],
+                                    child: Container(
+                                      child: ClipRRect( 
+                                        borderRadius: BorderRadius.circular(30), 
+                                        child: Image.asset(
+                                          images[3 - index],
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                ),
+                              ),
+
+                              const SizedBox(
+                                height: 8,
+                              ),
+
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16),
+                                child:
+                                  Text(
+                                    "${foodNames[index]} Recipes",
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    )
+                                  )
+                              ),
+
+                              const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                child: Text(
+                                  "Recipe by Tony Nguyen",
+                                   style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 11,
+                                    )
+                                ),
+                              )
+
+                              ],
+                            )
+                          )
+                        );
+                      }, 
+                      separatorBuilder: (context, _) => const SizedBox(
+                            width: 16,
+                          ), 
+                      itemCount: images.length)
+                  ),
+
+                ]
+              ),
+            ),
+          ),
+        );
+
+
+
+
+                                      Expanded(
+                                child: Center(
+                                  child: Text(
+                                    "Chef It Up",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 30,
+                                      color: Colors.brown.shade200,
+                                    ),
+                                  ),
+                                ),
+                              ),
